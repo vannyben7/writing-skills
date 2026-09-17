@@ -1,0 +1,38 @@
+# Private writing material and evaluation artifacts
+writing-profiles/
+profiles/
+samples/
+private/
+runs/
+baseline/
+corpus/
+holdout/
+model-outputs/
+*.log
+
+# Credentials and local configuration
+.env
+.env.*
+credentials*
+*.pem
+*.key
+.netrc
+.npmrc
+
+# Local caches, dependencies, and editor files
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.cache/
+.npm/
+.validation-*/
+.DS_Store
+.idea/
+.vscode/
+*.tgz
+
+# Local skill installations do not belong in the publication tree
+.agents/
+.codex/

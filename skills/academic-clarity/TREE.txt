@@ -1,0 +1,19 @@
+academic-clarity/
+├── agents/openai.yaml
+├── .gitignore
+├── bin/cli.js
+├── examples/before-after.md
+├── prompts/
+│   ├── audit-only.md
+│   └── full-paper-cleanup.md
+├── references/
+│   ├── sources-and-design.md
+│   ├── taxonomy.md
+│   └── voice-and-composition.md
+├── LICENSE
+├── THIRD_PARTY_NOTICES.md
+├── README.md
+├── README.zh-CN.md
+├── package.json
+├── SKILL.md
+└── TREE.txt

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "human-writing",
+  "description": "Human Writing local candidate: audit or revise Chinese and English prose while preserving meaning and authorial voice.",
+  "version": "2.12.1",
+  "author": {
+    "name": "Human Writing local derivative; upstream by Siqi Chen (blader)"
+  },
+  "license": "MIT",
+  "keywords": ["writing", "editing", "humanize", "prose", "style", "bilingual"],
+  "skills": ["./"]
+}

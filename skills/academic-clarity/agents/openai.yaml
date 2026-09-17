@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Clarity"
+  short_description: "Clarify academic framing while preserving evidence"
+  default_prompt: "Use $academic-clarity to revise defensive academic framing while preserving evidence boundaries and author voice."

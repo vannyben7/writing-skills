@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "human-writing",
+  "owner": {
+    "name": "Human Writing local derivative; upstream by Siqi Chen (blader)"
+  },
+  "description": "Local-only Human Writing candidate marketplace for this package directory; the public writing-skills repository owns its root marketplace.",
+  "plugins": [
+    {
+      "name": "human-writing",
+      "source": "./",
+      "description": "Human Writing local candidate: audit or revise Chinese and English prose while preserving meaning and authorial voice.",
+      "license": "MIT",
+      "keywords": ["writing", "editing", "humanize", "prose", "style", "bilingual"]
+    }
+  ]
+}

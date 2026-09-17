@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human Writing"
+  short_description: "Revise Chinese and English prose without flattening voice"
+  default_prompt: "Use $human-writing to revise this passage while preserving its meaning, evidence boundaries, and existing voice."

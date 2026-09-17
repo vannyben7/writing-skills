@@ -1,0 +1,72 @@
+{
+  "format_version": "1.0",
+  "profile_id": "TEST-zh-course-example",
+  "subject_type": "synthetic-test",
+  "status": "synthetic-test",
+  "updated_at": "2026-09-17",
+  "enabled": false,
+  "description": "TEST FIXTURE ONLY. Invented editorial preferences, never a real user's profile. Disabled: naming alone does not apply it. A test must explicitly request use of this disabled fixture for this turn, without changing saved state.",
+  "sample_evidence": [
+    {
+      "id": "TEST-S1",
+      "language": "zh",
+      "genre": "course-essay",
+      "subject_type": "synthetic-test",
+      "authorship": "synthetic-test",
+      "locator": "Synthetic example A, paragraph 1",
+      "evidence_paraphrase": "A paragraph develops the central case comparison before identifying a limit to its interpretation.",
+      "retention": "paraphrased-observation"
+    },
+    {
+      "id": "TEST-S2",
+      "language": "zh",
+      "genre": "course-essay",
+      "subject_type": "synthetic-test",
+      "authorship": "synthetic-test",
+      "locator": "Synthetic example B, paragraph 2",
+      "evidence_paraphrase": "The same theoretical term recurs unchanged while the explanation becomes more specific.",
+      "retention": "paraphrased-observation"
+    }
+  ],
+  "common": [],
+  "languages": {
+    "zh": [],
+    "en": []
+  },
+  "genres": {
+    "academic-paper": [],
+    "course-essay": [],
+    "personal-article": []
+  },
+  "language_genre": {
+    "zh/course-essay": [
+      {
+        "id": "TEST-O1",
+        "choice": "Let the central comparison develop before stating its existing interpretive limit; do not add a new limit.",
+        "evidence": ["TEST-S1"],
+        "stability": "tentative",
+        "basis": "synthetic-example",
+        "scope_limits": "Only a demonstration for Chinese course essays; not an English syntax preference."
+      },
+      {
+        "id": "TEST-O2",
+        "choice": "Repeat exact theoretical terms when the referent remains the same.",
+        "evidence": ["TEST-S2"],
+        "stability": "tentative",
+        "basis": "synthetic-example",
+        "scope_limits": "Do not infer a user preference or repeat ordinary words mechanically."
+      }
+    ]
+  },
+  "calibration": {
+    "status": "not yet reviewed",
+    "feedback": [],
+    "applied_observations": []
+  },
+  "limitations": [
+    "No real author samples were used.",
+    "No English syntax observations exist.",
+    "No academic-paper or personal-article observations exist.",
+    "No personal profile or style-matching effect has been validated."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "academic-clarity",
+  "version": "1.1.1",
+  "private": true,
+  "description": "Academic Clarity local candidate: English/Chinese defensive-framing audit with evidence and author-voice preservation; optional local skill installer; GitHub-only distribution.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "academic-clarity": "bin/cli.js"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "prompts",
+    "examples",
+    "references",
+    "agents",
+    "bin"
+  ],
+  "keywords": [
+    "academic-writing",
+    "scientific-writing",
+    "paper-review",
+    "peer-review",
+    "llm",
+    "skill",
+    "research",
+    "academic-editing",
+    "manuscript",
+    "reviewer"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node ./bin/cli.js --help",
+    "pack:dry": "npm pack --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vannyben7/writing-skills.git",
+    "directory": "skills/academic-clarity"
+  },
+  "homepage": "https://github.com/vannyben7/writing-skills",
+  "bugs": {
+    "url": "https://github.com/vannyben7/writing-skills/issues"
+  }
+}
