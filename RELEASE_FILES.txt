@@ -5,7 +5,15 @@ LICENSE
 README.md
 RELEASE_FILES.txt
 THIRD_PARTY_NOTICES.md
+docs/MAINTENANCE.md
+docs/UPSTREAM_WATCH.md
+docs/USER_GUIDE.en.md
+docs/USER_GUIDE.zh-CN.md
+examples/update-evidence.json
+maintenance/WATCHLIST.json
+scripts/assess_update.py
 scripts/check_release.py
+scripts/check_upstreams.py
 skills/academic-clarity/.gitignore
 skills/academic-clarity/LICENSE
 skills/academic-clarity/README.md
@@ -38,3 +46,5 @@ skills/human-writing/references/sources-and-decisions.md
 skills/human-writing/references/style-profiles.md
 skills/human-writing/references/third-party-notices.md
 skills/human-writing/scripts/validate-package.py
+tests/test_assess_update.py
+tests/test_check_upstreams.py

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "humanizer-upstream",
+      "repository": "blader/humanizer",
+      "why": "Human Writing 的来源；关注编辑原则、模式目录和原始许可的变化。",
+      "paths": [
+        {"path": "SKILL.md", "kind": "instructions", "why": "编辑行为与模式目录"},
+        {"path": "README.md", "kind": "documentation", "why": "公开版本和使用变化"},
+        {"path": "LICENSE", "kind": "license", "why": "原始许可与署名"}
+      ]
+    },
+    {
+      "id": "defensive-auditor-upstream",
+      "repository": "Worigin0314/academic-defensive-writing-auditor",
+      "why": "Academic Clarity 的来源；关注防御性表达分类和证据保护。",
+      "paths": [
+        {"path": "SKILL.md", "kind": "instructions", "why": "审计规则"},
+        {"path": "examples/before-after.md", "kind": "examples", "why": "语义保留示例"},
+        {"path": "package.json", "kind": "metadata", "why": "版本和分发元数据"},
+        {"path": "LICENSE", "kind": "license", "why": "原始许可与署名"}
+      ]
+    },
+    {
+      "id": "academic-voice-research",
+      "repository": "msimchowitz/writing-skills",
+      "why": "作者判断、学术声音与行文节奏的已记录参考来源。",
+      "paths": [
+        {"path": "for-agents/academic-voice/SKILL.md", "kind": "instructions", "why": "学术声音与作者判断"},
+        {"path": "for-agents/writing-cadence/SKILL.md", "kind": "instructions", "why": "论述节奏"},
+        {"path": "LICENSE", "kind": "license", "why": "参考来源许可"}
+      ]
+    },
+    {
+      "id": "humanizer-mode-research",
+      "repository": "Aboudjem/humanizer-skill",
+      "why": "审计、改写与文件编辑分工的参考；检测器式指标并不自动适用。",
+      "paths": [
+        {"path": "skills/humanizer/SKILL.md", "kind": "instructions", "why": "模式与保护约束"},
+        {"path": "README.md", "kind": "documentation", "why": "公开定位与分发变化"},
+        {"path": "LICENSE", "kind": "license", "why": "参考来源许可"}
+      ]
+    },
+    {
+      "id": "voice-profile-research",
+      "repository": "ymeiri/voice-layer",
+      "why": "独立声音档案、证据记录和用户控制的参考，不复制其隐私资料发现机制。",
+      "paths": [
+        {"path": "VOICE_PROFILE_SPEC.md", "kind": "specification", "why": "档案与证据结构"},
+        {"path": "packages/codex/skills/calibrate-my-voice/SKILL.md", "kind": "instructions", "why": "校准与用户确认语义"},
+        {"path": "packages/codex/skills/write-in-my-voice/SKILL.md", "kind": "instructions", "why": "档案应用行为"},
+        {"path": "README.md", "kind": "documentation", "why": "工具边界与兼容性"},
+        {"path": "LICENSE", "kind": "license", "why": "许可正文位置与变化"}
+      ]
+    },
+    {
+      "id": "evidence-bound-revision-research",
+      "repository": "lensback940701/Evidence-Bound-Press-Conference-Revision-Skill",
+      "why": "证据状态、必要限定和编辑处置的参考，避免引入项目专属审批流程。",
+      "paths": [
+        {"path": "SKILL.md", "kind": "instructions", "why": "证据保护与处置规则"},
+        {"path": "references/triage-and-regression.md", "kind": "instructions", "why": "语义回归方法"},
+        {"path": "LICENSE", "kind": "license", "why": "参考来源许可"}
+      ]
+    },
+    {
+      "id": "anti-defensive-research",
+      "repository": "Kiterlin/anti-defensive-writing",
+      "why": "直接陈述与删减辩解的参考；关注是否仍保护实质限定。",
+      "paths": [
+        {"path": "SKILL.md", "kind": "instructions", "why": "仓库根编辑规则"},
+        {"path": "skill/anti-defensive-writing/SKILL.md", "kind": "instructions", "why": "分发目录中的编辑规则"},
+        {"path": "LICENSE", "kind": "license", "why": "参考来源许可"}
+      ]
+    }
+  ]
+}

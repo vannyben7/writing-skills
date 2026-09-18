@@ -19,6 +19,11 @@ ROOT_FILES = {
     ".github/workflows/check-release.yml", ".gitignore", "LICENSE", "README.md",
     "RELEASE_FILES.txt", "THIRD_PARTY_NOTICES.md", "EVALUATION.md",
     "scripts/check_release.py",
+    "docs/USER_GUIDE.zh-CN.md", "docs/USER_GUIDE.en.md",
+    "docs/MAINTENANCE.md", "docs/UPSTREAM_WATCH.md",
+    "scripts/assess_update.py", "scripts/check_upstreams.py",
+    "tests/test_assess_update.py", "tests/test_check_upstreams.py",
+    "examples/update-evidence.json", "maintenance/WATCHLIST.json",
 }
 FIXTURE = "skills/human-writing/assets/TEST-profile.json"
 PRIVATE_DIRECTORIES = {
@@ -203,6 +208,14 @@ def check_workflows(files: set[str]) -> None:
 
 
 def run_checks() -> None:
+    # Mocked network tests and evidence arithmetic must pass without live services.
+    result = subprocess.run(
+        [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"],
+        cwd=ROOT, text=True, capture_output=True,
+    )
+    require(result.returncode == 0,
+            f"Maintenance tool tests failed: {result.stdout}{result.stderr}")
+    print(result.stderr.strip())
     human = ROOT / "skills" / "human-writing"
     result = subprocess.run([sys.executable, "scripts/validate-package.py"],
                             cwd=human, text=True, capture_output=True)

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "tier": "docs_structure",
+  "candidate": "SYNTHETIC EXAMPLE ONLY — not an actual update or evaluation",
+  "claim": "none",
+  "screening": {
+    "relevance": {"score": 2, "rationale": "Fictional clarification of a supported workflow."},
+    "gap_evidence": {"score": 2, "rationale": "Fictional reproducible documentation gap."},
+    "portability": {"score": 2, "rationale": "Fictional change without new dependencies."},
+    "testability": {"score": 2, "rationale": "Fictional deterministic link/structure check."},
+    "affordability": {"score": 2, "rationale": "Fictional small maintenance burden; higher means lower cost."}
+  },
+  "checks": {
+    "license": {"status": "unknown", "evidence": "Synthetic fixture; no actual license review performed."},
+    "security": {"status": "unknown", "evidence": "Synthetic fixture; no actual security review performed."},
+    "public_data_authorization": {"status": "pass", "evidence": "This example contains only invented metadata and no private inputs."},
+    "quantities_units_negation": {"status": "unknown", "evidence": "Synthetic fixture; no writing outputs checked."},
+    "qualifiers_scope_causality_citations": {"status": "unknown", "evidence": "Synthetic fixture; no writing outputs checked."},
+    "stance_priorities_voice": {"status": "unknown", "evidence": "Synthetic fixture; no writing outputs checked."},
+    "privacy_consent": {"status": "unknown", "evidence": "Synthetic fixture; no operational workflow tested."},
+    "no_default_raw_text_storage": {"status": "unknown", "evidence": "Synthetic fixture; no storage behavior tested."},
+    "profile_state_and_file_boundaries": {"status": "unknown", "evidence": "Synthetic fixture; no file/profile operations tested."},
+    "public_export_sanitized": {"status": "unknown", "evidence": "Synthetic fixture; no release export reviewed."},
+    "rollback_ready": {"status": "unknown", "evidence": "Synthetic fixture; no release or rollback artifact exists."}
+  },
+  "review": {
+    "reviewer": "fictional-reviewer-placeholder",
+    "independent_of_author": false,
+    "evidence": "No actual review occurred. A JSON assertion is not a review receipt."
+  },
+  "budget": {
+    "weekly_candidates": 1,
+    "triage_minutes": 0,
+    "monthly_model_calls": 0,
+    "paid_api": false,
+    "new_subscription": false,
+    "expansion_authorization": null,
+    "quota_or_auth_blocked": false,
+    "rate_limited": false,
+    "transport_failures": 0
+  },
+  "evidence": {
+    "kind": "synthetic",
+    "artifacts": [
+      {"reference": "fictional-reference-not-an-artifact", "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+    ],
+    "behavior_unchanged": false,
+    "structure_checks_passed": false
+  }
+}

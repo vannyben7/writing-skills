@@ -1,78 +1,138 @@
 # Writing Skills
 
-面向中英文写作的两个独立技能：`human-writing` 处理行文、论证展开与作者声音，`academic-clarity` 处理学术文字中的冗余辩解和证据边界。
+让文字更清楚，也让作者原本的意思留下来。
 
-**功能实验版：尚未证明整体文风优于旧版或直接提示。** 本项目通过 [vannyben7/writing-skills](https://github.com/vannyben7/writing-skills) 分发：`human-writing` 为独立衍生版本 2.12.1，`academic-clarity` 为独立衍生版本 1.1.1，均不冒充上游版本，也不自动替换已安装技能。
+本仓库提供两个中英文写作技能：`human-writing` 处理段落推进、句子表达和作者声音；`academic-clarity` 处理学术文字中的重复辩解，同时保护必要的证据边界。它们是交给 AI 助手阅读的编辑说明，不是新模型、独立写作软件或 AI 检测器。
 
-一般改写试验以平局为主，少量胜出包含有争议的忠实度判定。档案专属修复的 5 案例定向回归中，新版本 5/5 通过，对照 4/5 通过；这不能外推为通用写作优势、个人风格匹配效果或检测器表现。具体数据与限制见 [EVALUATION.md](EVALUATION.md)。本实验版开放功能试用，不以继续调优到某个胜率门槛为发布前提。
+[中文使用指南](docs/USER_GUIDE.zh-CN.md) · [English user guide](docs/USER_GUIDE.en.md) · [评估结果](EVALUATION.md) · [维护与更新](docs/MAINTENANCE.md)
 
-## 选择技能
+**当前为功能实验版，尚未证明整体文风优于旧版技能或直接提示。** 当前独立衍生版本：Human Writing **2.12.1**、Academic Clarity **1.1.1**。不保证检测器分数、论文录用、个人风格相似度，也不会自动替换你已安装的技能。
 
-| 技能 | 适用任务 | 边界 |
-|---|---|---|
-| [Human Writing](skills/human-writing/README.md) | 中英文学术论文、课程 essay、个人文章的审计或改写；先处理段落，再处理句子和词语 | 保留原有论点、事实、引文作用、语气和有用的表达，不推断 AI 作者身份 |
-| [Academic Clarity](skills/academic-clarity/README.zh-CN.md) | 学术论文与课程 essay 中的免责声明、重复限定、预先辩解和结果开脱 | 保留独立的样本、因果、来源等限制；不是通用写作或事实核查服务 |
+## 我应该选哪个？
 
-个人文章通常只用 `human-writing`。两个技能都能独立使用；普通使用不需要样文、声音档案、网络服务或另一个技能。
+| 你现在遇到的问题 | 先用哪个 | 它不应做什么 |
+| --- | --- | --- |
+| 文章读起来像几个互不相干的要点；句子重复；自己的重点不明显 | `human-writing` | 为了“有人味”编造观点、情绪、经历或事实 |
+| 论文或课程 essay 不断解释“并非声称……”，有些限定反复出现 | `academic-clarity` | 为了更有底气而删除样本、因果、来源或适用范围限制 |
+| 个人文章、随笔，希望保留自己的口吻 | 通常只用 `human-writing` | 把随笔强行改成学术论文 |
+| 只想知道问题在哪里，还不想改 | 选对应技能，明确说“只审计，不改写” | 擅自改正文或文件 |
+| 学术内容既有重复辩解，又有行文问题 | 明确要求两个技能各做一遍 | 自动循环修改，或让第二遍丢掉第一遍保护的信息 |
+
+两个技能都能单独使用。无需先提供样文、创建风格档案或安装另一个技能。好文字可以保持不变。
+
+## 三分钟开始
+
+“三分钟”是简短上手路线，不是下载或生成耗时保证。你需要已有一个能使用技能或读取本地文件的 AI 客户端，以及可用的模型访问权限。
+
+### 1. 安装一个或两个技能
+
+在支持 `skill-installer` 的 Codex 中，发送以下自然语言请求；这是发给助手的消息，不是终端命令：
 
 ```text
-用 $human-writing 改写这段课程 essay，保留论点、引文、事实和我的语气。
-用 $academic-clarity 只审计这段论文中的防御性表达，说明哪些限定必须保留，暂不改写。
+请用 skill-installer 从 GitHub 仓库 vannyben7/writing-skills 安装：
+- skills/human-writing
+- skills/academic-clarity
+先检查同名技能。已存在时不要覆盖，报告现有版本、目标路径和可选处理方式。
+安装完成后告诉我实际路径和版本。
 ```
 
-明确要求组合使用时，按一次有边界的流程处理：
+只需要一个时，删掉另一行。Codex CLI / IDE 支持时也可用 `$skill-installer` 选择安装技能。当前官方文档说明安装器可读取其他仓库、Codex 会自动发现新技能；未出现时可重启客户端。安装目录和交互方式随客户端而异。依据：[OpenAI Build skills](https://learn.chatgpt.com/docs/build-skills)（核对于 2026-09-18）。
+
+不用安装器？可将下载仓库中的完整技能文件夹复制到写作项目的 `.agents/skills/`，先确认没有同名目录。必须保留 `references/` 等配套文件，不能只复制 `SKILL.md`。详细步骤和不覆盖已有目录的示例见[中文安装说明](docs/USER_GUIDE.zh-CN.md#install)或[English setup](docs/USER_GUIDE.en.md#install)。本项目不要求安装付费工具或额外服务。
+
+### 2. 先试一小段
+
+在聊天中选择技能或直接写出名称，再贴上你自己的文字：
 
 ```text
-原文 → academic-clarity → human-writing → 与原文做语义核对
+用 human-writing 改写下面这段课程 essay。
+保留论点、数字、引用和我原来的立场；只返回改写后的文字，不修改文件。
+
+[在这里粘贴原文]
 ```
 
-最后比较确定程度、因果关系、否定、适用范围、证据状态、数值、引文作用和作者立场。交接可以是一条简短说明，不要求额外文件，也不会自动循环调用。详见 [Human Writing 交接契约](skills/human-writing/references/composition-contract.md)与 [Academic Clarity 组合说明](skills/academic-clarity/references/voice-and-composition.md)。
+Codex CLI / IDE 中可以写成 `$human-writing`。其他客户端使用其技能选择器；没有技能发现功能但能读文件时，可以让它先读完整技能目录中的 `SKILL.md` 及相关参考。不能读取这些文件的普通聊天窗口，不会仅凭技能名称获得本仓库的规则。
 
-## 可选声音档案
+### 3. 对照原文再决定采用
 
-两个技能接受同一套可编辑 Markdown 或 JSON 档案；只在用户明确选择后使用。档案与私人样文应保存在共享技能目录之外，普通改写不要求收集或保存这些资料。
+检查数字、否定、因果关系、结论强度、引用支持的内容和自己的立场有没有变化。不要只看“更顺”或“更短”。有问题就指出具体丢失的信息，让助手恢复；也可以保留原文。
 
-证据默认保存概述和样本定位；保留私人原文片段需要许可。区分自己的作品、欣赏的第三方风格和合成示例，并分别记录语言、文体和置信程度。中文样文不能直接确立英文句法偏好，也不能据此编造作者经历或观点。
+## 一个小例子
 
-`enabled: false` 保持停用；单纯提及名称不算启用。明确要求临时使用只影响本次，不修改保存状态。“这次不用档案”意味着不加载、不应用、不查询选择器，也不修改保存内容。公开包中的 [TEST-profile.json](skills/human-writing/assets/TEST-profile.json) 是明确标记且默认停用的合成测试样例，不是真实用户档案。详情见[声音档案规则](skills/human-writing/references/style-profiles.md)。
+以下为专门编写的合成示例，不是实测输出或效果证明。假设两处引导语只起重复铺垫作用：
 
-本包没有样文上传服务；所用模型或客户端仍可能处理你提供的文本，不能因为档案保存在本地就推断所有文字只在设备内处理。
+**原文**
 
-## 本地使用与安装
+> 需要强调的是，本研究仅纳入两所城市学校的48名学生，因此结果不能代表其他学校。值得注意的是，参与次数与结课成绩存在相关关系，但这一相关关系并不证明因果关系。
 
-不安装也可以把某个完整技能目录交给支持读取文件的客户端，并要求它从 `SKILL.md` 开始。保留 `references/`、`assets/` 和其他配套文件；只复制入口文件会丢失规则。
+**一种 Academic Clarity 改法**
 
-Codex 可从项目内的 `.agents/skills` 发现技能。下面以已下载的本仓库为来源，在你的写作项目中执行；将示例来源路径替换为实际位置，按需只安装其中一个。已有同名目录时，相应命令停止复制，应先自行比较版本。安装说明依据 [OpenAI 官方 Build skills 文档](https://learn.chatgpt.com/docs/build-skills)。
+> 本研究仅纳入两所城市学校的48名学生，因此结果不能代表其他学校。参与次数与结课成绩相关，但这不证明因果关系。
 
-```bash
-writing_skills_source="/path/to/writing-skills"
-mkdir -p .agents/skills
-test ! -e .agents/skills/human-writing && cp -R "$writing_skills_source/skills/human-writing" .agents/skills/
-test ! -e .agents/skills/academic-clarity && cp -R "$writing_skills_source/skills/academic-clarity" .agents/skills/
+删的是重复铺垫，不是“两所城市学校”“48名”“不能代表其他学校”或“不证明因果”。不是所有“值得注意的是”都应删除。更多段落、英文和保留原文的例子见两份使用指南。
+
+## 三种常用请求
+
+```text
+用 academic-clarity 只审计这段论文，说明哪些限定应保留。不要改写或修改文件。
+
+用 human-writing 改写这段个人文章，只在回复中给出文本，不增加经历或感受。
+
+用 human-writing 读取 draft.md，把修订稿另存为 draft.revised.md；
+若目标文件已存在先停下，不覆盖原稿。保留引用、代码和 YAML。
 ```
 
-其他技能客户端：把选定的完整目录复制到该客户端配置的技能目录，并使用其发现或调用机制；支持直接读取 `SKILL.md` 的客户端也可直接使用。不要假设不同客户端共用相同安装路径。仓库根未提供 Claude marketplace；`skills/human-writing/.claude-plugin/marketplace.json` 仅供该子包目录的本地使用。
+文件读写、Word/PDF 支持和修订痕迹由客户端能力决定；这些技能本身不提供文档转换器。请明确授权修改哪个文件，仅给出路径不等于要求覆盖它。
 
-Academic Clarity 的可选 Node 安装器只复制指令文件，不调用模型。它保持 `private: true`，本项目不采用 npm 发布流程。
+## 可选：风格档案与组合使用
 
-## 本地结构检查
+风格档案是共享技能目录之外的可编辑 Markdown 或 JSON 文件，用来记录从授权样文中观察到的表达偏好。它不是训练好的个人模型。少量样文只能支持暂定观察；自己的作品、欣赏的第三方风格、合成示例必须分开。
 
-要求 Python 3.10+ 和 Node.js 18+。在仓库根运行：
+- 默认只保留证据概述和样本定位；保存原文片段需要许可。
+- `enabled: false` 表示停用；仅提到名称不会启用。明确要求临时使用只影响本次。
+- “这次不用档案”表示本次不读取、不应用，也不改保存状态。
+- 查看、纠正、切换、停用、删除和设为默认，都应明确说明具体档案和动作。
+- 公开的 [TEST-profile.json](skills/human-writing/assets/TEST-profile.json) 是默认停用的合成示例，不是你的个人档案。
+
+详见[中文档案说明](docs/USER_GUIDE.zh-CN.md#profiles)、[English profiles](docs/USER_GUIDE.en.md#profiles)和[完整档案规则](skills/human-writing/references/style-profiles.md)。本地保存不等于本地推理：模型服务仍可能处理发送给它的文字。
+
+只有明确要求组合时，采用一次有边界的流程：
+
+`原文 → academic-clarity → human-writing → 与原文做语义核对`
+
+保留原文和未解决问题，不必另建交接文件，也不自动反复调用。个人文章通常只用 Human Writing。见[组合指南](docs/USER_GUIDE.zh-CN.md#combine)。
+
+## 我们测试了什么？
+
+[评估记录](EVALUATION.md)是数字与限制的完整来源，不同阶段不能合并成一个“成功率”。
+
+| 检查 | 已公开结果 | 不能据此得出 |
+| --- | --- | --- |
+| 一般改写开发集 | 8份来源文本、15个文本与路径组合、45份输出、60条裁判观察；以平局为主，部分胜出有判定争议 | 整体优于旧版、直接提示或所有模型 |
+| 修复前合成工作流 | 11/12通过；剩余问题是克制文风没有充分落实 | 已验证真实磁盘上的档案状态 |
+| 档案专属定向回归 | 2.12.1为5/5；2.12.0对照为4/5 | 广泛盲测优势、个人风格匹配或检测器效果 |
+| 历史写作评估工具链（见评估记录） | 36项离线检查通过 | 多了36个写作案例，或这是当前仓库测试总数 |
+
+一般改写阶段使用 Human Writing 2.12.0 与 Academic Clarity 1.1.1；Human Writing 2.12.1 只改了档案参考中的行为规则，普通编辑入口正文未变。尚无保留集泛化结果、真实私人档案验证或用户偏好认可。
+
+## 费用、更新与许可证
+
+技能内容按 MIT 许可证提供，不自带模型或付费订阅。模型调用仍受你所用客户端、账号和服务商的计费、限额、网络与隐私规则约束；组合处理通常需要更多上下文或调用。普通使用不要求 Python 或 Node.js。
+
+从仓库更新文件，不会自动更新一份已经复制安装的技能。升级前记录来源版本并备份整个旧目录；私人档案单独保存。如何避免同名冲突、迁移与回退，见[维护说明](docs/MAINTENANCE.md)及[使用指南](docs/USER_GUIDE.zh-CN.md#versions)。
+
+维护者可在仓库根运行以下离线结构检查（Python 3.10+、Node.js 18+）：
 
 ```bash
 python3 scripts/check_release.py
 ```
 
-检查公开文件白名单、技能名称和版本、相对链接、客户端元数据、合成 TEST 样例、禁止发布的私人目录或文件、个人绝对路径和常见凭据模式。它还会在 `skills/human-writing` 中运行已有包验证器，并检查 Academic Clarity 的 CLI。所有检查均为确定性的本地检查，不调用模型、不安装依赖、不发布 npm 包。
+它检查公开文件清单、版本、链接和包结构，也运行使用模拟数据的维护工具单元测试；不调用模型，也不证明写作质量。新增的维护工具测试与评估记录中的历史36项分开计算，更不是新增写作案例。新增公开文件需同步 [RELEASE_FILES.txt](RELEASE_FILES.txt)。普通用户不必运行它才能编辑文章。
 
-根目录 CI 运行同一命令。子包内保留的 workflow 不会作为仓库根工作流自动执行。预期发布文件见 [RELEASE_FILES.txt](RELEASE_FILES.txt)；白名单是审核边界，新增公开文件时需要同步维护。此检查不能替代人工核对未知形式的敏感信息。
+根集成文档和检查代码使用 [MIT](LICENSE)。两包保留各自的上游许可证、版权与来源记录；不是上游官方新版本，也不暗示上游认可。见[第三方声明](THIRD_PARTY_NOTICES.md)、[Human Writing 来源](skills/human-writing/references/sources-and-decisions.md)和[Academic Clarity 来源](skills/academic-clarity/references/sources-and-design.md)。
 
-## English quick use
+## English at a glance
 
-Use `$human-writing` to audit or revise prose while preserving the author's meaning and voice. Use `$academic-clarity` for defensive academic framing and evidence boundaries. Both work without writing samples or a profile.
+These are two portable instruction packages for an AI assistant, not a model or detector. Use **Human Writing** for prose structure and authorial voice; use **Academic Clarity** for defensive academic framing without losing evidence limits. Both work without samples or profiles.
 
-For an explicitly requested combined pass: original → Academic Clarity → Human Writing → compare with the original. Copy a complete skill directory into your client's configured skill location, or have the client read its `SKILL.md` directly. This is a functional experimental distribution; overall style superiority has not been demonstrated. See [evaluation scope and results](EVALUATION.md), including disputed judgments and the limited targeted regression.
-
-## 许可证与来源
-
-根目录集成文档和检查代码使用 [MIT 许可证](LICENSE)。两个技能保留各自未改写的上游许可证、版权声明和来源记录；根许可证不重新归属上游内容。见[第三方归属说明](THIRD_PARTY_NOTICES.md)。
+Start with the [English user guide](docs/USER_GUIDE.en.md), including safe installation, copyable requests, examples, privacy controls and rollback. This is a functional experimental release: overall writing superiority has not been demonstrated. Read the [evaluation record](EVALUATION.md) for the small-sample results and disputed judgments.
